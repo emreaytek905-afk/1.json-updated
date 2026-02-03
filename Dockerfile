@@ -1,12 +1,12 @@
 # clean base image containing only comfyui, comfy-cli and comfyui-manager
 FROM runpod/worker-comfyui:5.0.0-base
 
-# ComfyUI'i son sürüme guncelle (Qwen Fix icin)
-WORKDIR /comfyui
-RUN git config --global --add safe.directory /comfyui
+# Klasör adını DUZELTTIK (Buyuk harflere dikkat)
+WORKDIR /ComfyUI
+RUN git config --global --add safe.directory '*'
+RUN git reset --hard
 RUN git pull
 RUN pip install -r requirements.txt
-
 
 # install custom nodes into comfyui (first node with --mode remote to fetch updated cache)
 # The workflow contained only unknown_registry custom nodes with no aux_id; these could not be resolved for installation.
