@@ -1,5 +1,5 @@
 # clean base image containing only comfyui, comfy-cli and comfyui-manager
-FROM runpod/worker-comfyui:5.5.1-base
+FROM runpod/worker-comfyui:4.0.5-base-cuda12.1.0
 
 # install custom nodes into comfyui (first node with --mode remote to fetch updated cache)
 # The workflow contained only unknown_registry custom nodes with no aux_id; these could not be resolved for installation.
