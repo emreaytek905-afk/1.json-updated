@@ -1,11 +1,13 @@
 # clean base image containing only comfyui, comfy-cli and comfyui-manager
 FROM runpod/worker-comfyui:5.0.0-base
 
-# Klasör adını DUZELTTIK (Buyuk harflere dikkat)
 WORKDIR /ComfyUI
-RUN git config --global --add safe.directory '*'
-RUN git reset --hard
-RUN git pull
+# Git klasoru yoksa yeniden yarat ve guncelle
+RUN git init
+RUN git remote add origin https://github.com/comfyanonymous/ComfyUI.git || true
+RUN git fetch origin master
+RUN git checkout master
+RUN git reset --hard origin/master
 RUN pip install -r requirements.txt
 
 # install custom nodes into comfyui (first node with --mode remote to fetch updated cache)
